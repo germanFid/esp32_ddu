@@ -1,0 +1,19 @@
+{
+  "files": [
+    "actions.h",
+    "fonts.h",
+    "images.c",
+    "images.h",
+    "screens.c",
+    "screens.h",
+    "structs.h",
+    "styles.c",
+    "styles.h",
+    "ui.c",
+    "ui.h",
+    "ui_font_opt2_daytona.c",
+    "ui_font_opt2_daytona_fat_italic.c",
+    "ui_font_opt2_daytona_semi_bold.c",
+    "vars.h"
+  ]
+}
