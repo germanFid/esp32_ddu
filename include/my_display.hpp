@@ -40,6 +40,7 @@ public:
         panel_cfg.panel_height     = 480;
         panel_cfg.offset_x         = 0;
         panel_cfg.offset_y         = 0;
+        panel_cfg.offset_rotation  = 2;
 
         _panel_instance->config(panel_cfg);
         setPanel(_panel_instance);

@@ -20,9 +20,20 @@ typedef struct _objects_t {
     lv_obj_t *gear;
     lv_obj_t *speed;
     lv_obj_t *rpm;
-    lv_obj_t *rpm_bar;
     lv_obj_t *obj0;
     lv_obj_t *obj1;
+    lv_obj_t *laptime_prediction;
+    lv_obj_t *laptime_delta;
+    lv_obj_t *obj2;
+    lv_obj_t *laptime_current;
+    lv_obj_t *obj3;
+    lv_obj_t *laps_count;
+    lv_obj_t *obj4;
+    lv_obj_t *laps_count_1;
+    lv_obj_t *obj5;
+    lv_obj_t *laps_count_2;
+    lv_obj_t *obj6;
+    lv_obj_t *obj7;
 } objects_t;
 
 extern objects_t objects;

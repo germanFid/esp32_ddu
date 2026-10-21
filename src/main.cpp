@@ -1,8 +1,11 @@
 #include <Arduino.h>
 #include <lvgl.h>
+
+#include "LvglUiBridge.h"
 #include "my_display.hpp"
 #include "hud_ui/ui.h"
 #include "hud_ui/vars.h"
+#include "SerialReciever.h"
 
 #define HOR_RES 320
 #define VER_RES 480
@@ -10,7 +13,9 @@
 
 static LGFX lcd;
 static uint8_t lv_buffer[BUF_SIZE];
-static bool systemStarted = false;
+
+CarData carData;
+Hardware::SerialReceiver serialReceiver;
 
 // DEBUG_VALUES
 // int rpm;
@@ -76,35 +81,12 @@ void setup() {
 }
 
 void loop() {
-    lv_timer_handler();
-    ui_tick();
-
-    if (Serial.available() > 0) {
-        String inputString = Serial.readStringUntil('\n');
-        inputString.trim(); // Удаляем случайные пробелы или '\r'
-
-        // if (!systemStarted) {
-        //     if (inputString == "!start\n") {
-        //         systemStarted = true;
-        //         Serial.println("MCU: Bridge established. Parsing telemetry...");
-        //         // place for startup animation :0
-        //     }
-        //     return;
-        // }
-
-        parseTelemetry(inputString);
+    if (serialReceiver.readSerial(carData)) {
+        Hardware::LvglUiBridge::updateUi(carData);
     }
 
-    // UI LOGIC
-    // speed++;
-    // rpm++;
-    //
-    // if (rpm > 6000) rpm = 0;
-    // if (speed > 300) speed = 0;
-    //
-    // set_var_v_rpm(std::to_string(rpm).c_str());
-    // set_var_v_speed(std::to_string(speed).c_str());
-    //
+    ui_tick();
 
+    lv_timer_handler();
     delay(5);
 }
